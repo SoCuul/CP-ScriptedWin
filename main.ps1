@@ -3,7 +3,7 @@ Import-Module '.\modules\2-RemoveForbiddenUsers.psm1' -Force
 Import-Module '.\modules\3-SetAccountPasswords.psm1' -Force
 Import-Module '.\modules\4-InstallAntimalware.psm1' -Force
 Import-Module '.\modules\5-SearchForFiles.psm1' -Force
-Import-Module '.\modules\6-SetSecurityPolicy.psm1' -Force
+Import-Module '.\modules\6-SecureSystem.psm1' -Force
 Import-Module '.\modules\7-ShowFileShares.psm1' -Force
 
 # Check if ran as administrator
@@ -29,7 +29,7 @@ function Show-Menu {
 3) Set account passwords
 4) Download and install antimalware software
 5) Search for files
-6) Set security policy settings
+6) Secure system
 7) Show file shares
 "@
 }
@@ -60,7 +60,7 @@ while ($true) {
             Search-ForFiles
         }
         '6' {
-            Set-SecurityPolicy
+            SecureSystem
         }
         '7' {
             Show-FileShares
