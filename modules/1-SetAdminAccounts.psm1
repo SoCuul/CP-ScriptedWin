@@ -18,7 +18,7 @@ function Set-AdminAccounts {
 
         # Check if user should be admin
         if ($AdminsList -Contains $UserName) {
-            Remove-LocalGroupMember -Group "Administrators" -Member $UserName
+            Add-LocalGroupMember -Group "Administrators" -Member $UserName
 
             Write-Host -NoNewline "+ Admin has been given to: ${UserName}`r`n"
         }
