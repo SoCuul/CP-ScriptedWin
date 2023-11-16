@@ -5,6 +5,7 @@ Import-Module '.\modules\4-InstallAntimalware.psm1' -Force
 Import-Module '.\modules\5-SearchForFiles.psm1' -Force
 Import-Module '.\modules\6-SecureSystem.psm1' -Force
 Import-Module '.\modules\7-ShowFileShares.psm1' -Force
+Import-Module '.\modules\8-ShowProgramsPorts.psm1' -Force
 
 # Check if ran as administrator
 $ShouldBypassAdminCheck = Test-Path -Path "./BypassAdmin"
@@ -31,6 +32,7 @@ function Show-Menu {
 5) Search for files
 6) Secure system
 7) Show file shares
+8) Show programs using ports
 "@
 }
 
@@ -60,10 +62,13 @@ while ($true) {
             Search-ForFiles
         }
         '6' {
-            SecureSystem
+            Secure-System
         }
         '7' {
             Show-FileShares
+        }
+        '8' {
+            Show-ProgramsPorts
         }
         'q' {
             Write-Output 'Exiting...'
