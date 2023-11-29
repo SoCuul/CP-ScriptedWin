@@ -1,4 +1,4 @@
-Import-Module '.\modules\1-SetAdminAccounts.psm1' -Force
+﻿Import-Module '.\modules\1-SetAdminAccounts.psm1' -Force
 Import-Module '.\modules\2-RemoveForbiddenUsers.psm1' -Force
 Import-Module '.\modules\3-SetAccountPasswords.psm1' -Force
 Import-Module '.\modules\4-InstallAntimalware.psm1' -Force
@@ -10,16 +10,16 @@ Import-Module '.\modules\8-ShowProgramsPorts.psm1' -Force
 # Check if ran as administrator
 $ShouldBypassAdminCheck = Test-Path -Path "./BypassAdmin"
 if (!$ShouldBypassAdminCheck -and (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator'))) {
-    Write-Output "This script must be run as Administrator. Exiting..."
-    exit
+    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
+    exit 0
 }
 
 # Set window title
-$Host.UI.RawUI.WindowTitle = "CyberPatriot Team Strawberry • Windows Scripts"
+$Host.UI.RawUI.WindowTitle = "CyberPatriot Team Strawberry - Windows Scripts"
 
 function Show-Menu {
     Clear-Host
-
+    
     Write-Output @"
 ========================================================
 ===  CyberPatriot Team Strawberry - Windows Scripts  ===
@@ -62,7 +62,7 @@ while ($true) {
             Search-ForFiles
         }
         '6' {
-            Secure-System
+            SecureSystem
         }
         '7' {
             Show-FileShares
