@@ -5,7 +5,7 @@ function Remove-ForbiddenUsers {
     $AllUsers = Get-LocalUser
 
     # Don't mess with these accounts
-    $DefaultAccounts = @('Administrator', 'DefaultAccount', 'Guest', 'WDAGUtilityAccount', 'sshd')
+    $DefaultAccounts = @('Administrator', 'DefaultAccount', 'Guest', 'WDAGUtilityAccount', 'defaultuser0', 'sshd')
 
     Foreach ($User in $AllUsers) {
         $UserName = $User.name
