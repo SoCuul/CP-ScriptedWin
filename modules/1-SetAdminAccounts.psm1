@@ -16,6 +16,12 @@ function Set-AdminAccounts {
             continue
         } 
 
+        # Don't mess with system accounts
+        if ($UserName -Match '\$') {
+            Write-Output "Skipping system account: $UserName"
+            continue
+        }
+
         # Check if user should be admin
         if ($AdminsList -Contains $UserName) {
             Add-LocalGroupMember -Group "Administrators" -Member $UserName
