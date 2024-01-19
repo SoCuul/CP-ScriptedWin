@@ -16,6 +16,12 @@ function Remove-ForbiddenUsers {
             continue
         } 
 
+        # Don't mess with system accounts
+        if ($UserName -Match '\$') {
+            Write-Output "Skipping system account: $UserName"
+            continue
+        }
+
         # Check if account should exist on the system
         if ($ValidUsers -NotContains $UserName) {
             Remove-LocalUser -Name $UserName
